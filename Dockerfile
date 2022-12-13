@@ -1,9 +1,15 @@
-FROM python:3.6
+FROM python:3.9.10
 
-ARG project_dir=/projects/
+WORKDIR /
 
-ADD src/requirements.txt $project_dir
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
 
-WORKDIR $project_dir
+COPY requirements.txt ./
 
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
 RUN pip install -r requirements.txt
+
+COPY . .
+CMD ["flask", "run"]
