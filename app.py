@@ -15,7 +15,6 @@ app.config.from_pyfile(flask_conf_file)
 mysql = MySQL()
 mysql.init_app(app)
 
-
 @app.route('/', methods=["GET"])
 def index():
     result_dict = {}
